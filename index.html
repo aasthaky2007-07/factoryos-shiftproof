@@ -1,0 +1,95 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>FactoryOS ShiftProof</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧵</text></svg>">
+<style>
+:root{--ink:#14223a;--mut:#64748b;--ln:#e2e8f0;--bg:#f3f6fb;--teal:#0b7f8c;--grn:#15803d;--gbg:#e6f6ec;--amb:#a16207;--abg:#fff4d6;--red:#b42336;--rbg:#ffeaed}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{background:#0f1d33;color:#fff;padding:14px 24px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{display:flex;gap:11px;align-items:center}.logo{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#14b8c4,#0b7f8c);display:grid;place-items:center;font-weight:900}
+.brand b{display:block;font-size:16px}.brand small{color:#9fb3cf;letter-spacing:1.5px;font-size:10px;text-transform:uppercase}
+.pill{font-size:11px;background:#1c2f4d;border-radius:99px;padding:5px 11px;color:#bcd0ea}.pill i{display:inline-block;width:7px;height:7px;border-radius:50%;background:#34d399;margin-right:6px}
+main{max-width:1280px;margin:auto;padding:24px 20px 50px}
+.hero h1{font-size:28px;line-height:1.2;margin:0 0 6px;letter-spacing:-.6px}.hero p{margin:0 0 20px;color:var(--mut);max-width:760px}
+.grid{display:grid;grid-template-columns:400px 1fr;gap:20px;align-items:start}
+.card{background:#fff;border:1px solid var(--ln);border-radius:16px;box-shadow:0 8px 26px rgba(20,34,58,.06);padding:18px}
+h2{font-size:15px;margin:0 0 3px}.sub{color:var(--mut);font-size:12px;margin:0 0 14px}
+label{display:block;font-size:12px;font-weight:700;margin:12px 0 5px;color:#3b4b63}
+select,input,textarea{width:100%;padding:10px 11px;border:1px solid #d3dce8;border-radius:10px;font:inherit;background:#fff;color:var(--ink)}
+button{font:inherit;font-weight:650;border:0;border-radius:10px;padding:10px 14px;cursor:pointer}button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid #7dd3da;outline-offset:2px}
+.pri{background:var(--teal);color:#fff}.sec{background:#edf2f8;color:var(--ink)}.sm{padding:6px 10px;font-size:12px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}.chip{background:#f1f5f9;border:1px solid var(--ln);padding:7px 11px;font-size:12px;border-radius:99px}.chip.on{background:var(--teal);color:#fff;border-color:var(--teal)}
+.row{display:flex;gap:8px}.row>*{flex:1}.row .mic{flex:0 0 auto}
+.gate{margin-top:16px;display:grid;gap:7px}.gs{display:flex;gap:10px;align-items:center;padding:9px 11px;border:1px solid var(--ln);border-radius:10px;font-size:12.5px;background:#fafcff}
+.gs .d{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:800;background:#e8edf4;color:#6b7a90;flex:none}
+.gs.ok .d{background:var(--gbg);color:var(--grn)}.gs.no .d{background:var(--rbg);color:var(--red)}.gs.run .d{animation:p .6s infinite alternate}@keyframes p{to{background:#bfe9ee}}
+.gs small{display:block;color:var(--mut);font-size:11px}
+.res{margin-top:14px;border-radius:14px;padding:15px;border:1px solid}.res.a{background:var(--gbg);border-color:#b7e3c6}.res.b{background:var(--abg);border-color:#f1d78a}
+.res h3{margin:0 0 6px;font-size:15px}.meta{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}.meta span{background:#fff;border-radius:8px;padding:4px 8px;font-size:11px;border:1px solid #0001}
+.ph{background:#0f1d33;color:#9fb3cf;border-radius:10px;padding:16px;text-align:center;font-size:12px;margin:10px 0}
+.safe{border-left:3px solid var(--amb);background:#fff8e6;padding:8px 11px;border-radius:0 8px 8px 0;font-size:12px;color:#6f4b0b;margin-top:10px}
+.tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}.tabs button{background:#edf2f8}.tabs button.on{background:var(--ink);color:#fff}
+.tag{display:inline-block;padding:3px 9px;border-radius:99px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.4px}
+.t-approved,.t-reviewed{background:var(--gbg);color:var(--grn)}.t-pending,.t-open{background:var(--abg);color:var(--amb)}.t-outdated,.t-conflict{background:var(--rbg);color:var(--red)}
+.item{border:1px solid var(--ln);border-radius:12px;padding:13px;margin-bottom:9px;display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.item h3{margin:0 0 3px;font-size:13px}.item p{margin:0;font-size:11.5px;color:var(--mut)}.item .r{display:flex;flex-direction:column;gap:7px;align-items:flex-end;flex:none}
+.mets{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.met{border:1px solid var(--ln);border-radius:12px;padding:13px}.met b{font-size:26px;display:block}.met span{font-size:11px;color:var(--mut)}
+.nm{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}.nm div{border:1px dashed #b9c6d8;border-radius:12px;padding:12px;font-size:12px}.nm b{display:block;margin-bottom:3px}
+.empty{padding:26px;text-align:center;color:var(--mut)}.note{font-size:11.5px;color:var(--mut);margin-top:12px}
+.hid{display:none}.toast{position:fixed;bottom:20px;right:20px;background:#14243a;color:#fff;padding:12px 16px;border-radius:12px;font-size:13px;z-index:9}
+@media(max-width:900px){.grid{grid-template-columns:1fr}.mets{grid-template-columns:1fr 1fr}.nm{grid-template-columns:1fr}.item{flex-direction:column}.item .r{align-items:flex-start;flex-direction:row}}
+</style></head><body>
+<header><div class="brand"><div class="logo">F</div><div><b>FactoryOS</b><small>ShiftProof</small></div></div><div class="pill"><i></i>Demo environment · simulated sample data · Team Knowvate</div></header>
+<main>
+<section class="hero"><h1>When the expert is away, knowledge shouldn't go missing.</h1><p>An evidence-first handover workflow for one task: air-jet loom stoppages. Workers get approved, machine-specific guidance with source and version, or a clear escalation. Never a guess.</p></section>
+<div class="grid">
+<section class="card" aria-labelledby="wv"><h2 id="wv">Worker view</h2><p class="sub">What a newcomer sees at the machine</p>
+<label for="mach">Machine</label><select id="mach"><option value="AJL-01">Air-jet loom · AJL-01</option><option value="AJL-02">Air-jet loom · AJL-02</option><option value="NEW">Unfamiliar machine (not in library)</option></select>
+<label>Symptom</label><div class="chips" id="chips" role="group" aria-label="Symptom"></div>
+<label for="q">Or describe it (text or voice)</label><div class="row"><input id="q" placeholder="e.g. loom stopped" autocomplete="off"><button class="sec mic" id="mic" aria-label="Speak your question" title="Voice (browser support varies)">🎤</button></div>
+<button class="pri" id="ask" style="width:100%;margin-top:14px">Check approved evidence</button>
+<div class="gate hid" id="gate" aria-live="polite"></div><div id="out" aria-live="polite"></div></section>
+<section class="card"><div class="tabs" id="tabs" role="tablist"><button data-t="p" class="on">Knowledge Passports</button><button data-t="e">Escalation queue <span id="ec"></span></button><button data-t="m">Pilot &amp; metrics</button></div>
+<div id="tp"><p class="sub">Each passport holds machine, symptom, source, version, reviewer. Only authorized reviewers should approve.</p><div id="plist"></div>
+<details><summary style="cursor:pointer;font-weight:650;margin:8px 0">+ Add knowledge capture (saved as pending)</summary><form id="nf"><label for="nt">Title</label><input id="nt" required><div class="row"><div><label for="nm">Machine</label><select id="nm"><option>AJL-01</option><option>AJL-02</option></select></div><div><label for="ns">Symptom</label><select id="ns"></select></div></div><label for="nsrc">Source (manual, demo, record)</label><input id="nsrc" required><button class="pri" style="margin-top:12px">Save as pending review</button></form></details></div>
+<div id="te" class="hid"></div>
+<div id="tm" class="hid"><div class="mets" id="mets"></div><div class="nm"><div><b>Retrieval accuracy</b>Is the correct approved source retrieved? <em>Not measured</em></div><div><b>Escalation quality</b>Are gaps, conflicts and unfamiliar cases escalated? <em>Not measured</em></div><div><b>Time to approved answer</b>Baseline first, targets later. <em>Not measured</em></div></div>
+<p class="note">Counts above are demo clicks, not pilot results. This prototype generates no repair steps; safety isolation and site procedures stay with qualified staff.</p><div class="row" style="margin-top:12px"><button class="sec" id="exp">Export data (JSON)</button><button class="sec" id="rst">Reset demo data</button></div></div>
+</section></div></main><div class="toast hid" id="toast" role="status"></div>
+<script>
+const SY={stoppage:'Loom stopped',yarn:'Yarn breakage',oil:'Oil leakage',sound:'Unusual sound',fabric:'Fabric defect'},KEY='shiftproof_v2',today=new Date().toISOString().slice(0,10),$=i=>document.getElementById(i);
+const seed=()=>({cards:[
+{id:'KP-001',title:'Loom stoppage: approved checks reference',machine:'AJL-01',symptom:'stoppage',source:'Sample SOP reference (replace with factory-approved document)',version:'v1.2',reviewer:'Authorized maintenance reviewer (sample)',status:'approved',expires:'2027-08-15'},
+{id:'KP-002',title:'Yarn breakage: capture record',machine:'AJL-01',symptom:'yarn',source:'Foreman interview note, consented, not validated',version:'draft-0.1',reviewer:'Pending authorized reviewer',status:'pending',expires:''},
+{id:'KP-003',title:'Unusual sound: old maintenance log',machine:'AJL-02',symptom:'sound',source:'Maintenance log reference (expired)',version:'v0.8',reviewer:'Review owner required',status:'approved',expires:'2025-12-31'},
+{id:'KP-004',title:'Oil leakage: two conflicting records',machine:'AJL-01',symptom:'oil',source:'Manual rev A vs foreman note',version:'conflict',reviewer:'Requires qualified review',status:'conflict',expires:''}],esc:[],checks:0,passes:0,n:1});
+let S;try{S=JSON.parse(localStorage.getItem(KEY))||seed()}catch(e){S=seed()}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}render()},esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const toast=m=>{const t=$('toast');t.textContent=m;t.classList.remove('hid');clearTimeout(toast.h);toast.h=setTimeout(()=>t.classList.add('hid'),2800)},wait=ms=>new Promise(r=>setTimeout(r,ms));
+let sym='stoppage';
+function chips(){$('chips').innerHTML=Object.entries(SY).map(([k,v])=>`<button type="button" class="chip ${k===sym?'on':''}" data-s="${k}" aria-pressed="${k===sym}">${v}</button>`).join('');$('ns').innerHTML=Object.entries(SY).map(([k,v])=>`<option value="${k}">${v}</option>`).join('')}
+$('chips').onclick=e=>{const k=e.target.dataset.s;if(k){sym=k;$('q').value='';chips()}};
+$('q').oninput=()=>{const q=$('q').value.toLowerCase(),m=[[/stop|ruk|band/,'stoppage'],[/yarn|thread|dhaag|break|tut/,'yarn'],[/oil|leak|tel/,'oil'],[/sound|noise|awaa/,'sound'],[/fabric|defect|kapd/,'fabric']].find(x=>x[0].test(q));if(m){sym=m[1];chips()}};
+function gate(m,s){const cs=S.cards.filter(c=>c.machine===m&&c.symptom===s),ap=cs.filter(c=>c.status==='approved'),cur=ap.filter(c=>!c.expires||c.expires>=today),cf=cs.some(c=>c.status==='conflict');
+return{card:cur[0],steps:[
+[m!=='NEW'&&cs.length>0,'Applies to this machine?',m==='NEW'?'Machine/model not in the library':cs.length?'Passport found for this machine and symptom':'No passport for this machine and symptom'],
+[ap.length>0,'Approved by authorized staff?',ap.length?'Approved status on file':'No approved passport (pending or conflicting only)'],
+[cur.length>0,'Current version?',cur.length?'Version is within its review date':'Approved record is expired or outdated'],
+[!cf&&cs.length>0,'No missing or conflicting evidence?',cf?'Conflicting sources detected':cs.length?'No conflicts found':'Evidence is missing']]}}
+$('ask').onclick=async()=>{const m=$('mach').value,g=gate(m,sym),G=$('gate');$('out').innerHTML='';G.classList.remove('hid');G.innerHTML=g.steps.map(s=>`<div class="gs"><span class="d">·</span><div>${esc(s[1])}</div></div>`).join('');$('ask').disabled=true;
+const rows=[...G.children];let fail=null;for(let i=0;i<4;i++){rows[i].classList.add('run');await wait(420);rows[i].classList.remove('run');const[ok,,d]=g.steps[i];rows[i].classList.add(ok?'ok':'no');rows[i].querySelector('.d').textContent=ok?'✓':'✕';rows[i].lastChild.insertAdjacentHTML('beforeend',`<small>${esc(d)}</small>`);if(!ok&&!fail)fail=d}
+if(g.steps[3][2]==='Conflicting sources detected')fail=g.steps[3][2];S.checks++;const pass=!fail&&g.card;if(pass){S.passes++;const c=g.card;$('out').innerHTML=`<div class="res a"><h3>✓ Approved evidence found</h3><b>${esc(c.title)}</b><div class="meta"><span>Source: ${esc(c.source)}</span><span>Version: ${esc(c.version)}</span><span>Reviewer: ${esc(c.reviewer)}</span></div><div class="ph">Video / manual placeholder<br>(attach the approved media for this passport)</div><div class="safe">Follow the approved procedure for this machine model and your site safety rules, including authorized energy isolation / lockout. This prototype shows no repair steps. Unsure? Escalate.</div></div>`}
+else{let e=S.esc.find(x=>x.status==='open'&&x.machine===m&&x.symptom===sym);if(!e){e={id:'ESC-'+String(S.n++).padStart(3,'0'),machine:m,symptom:sym,reason:fail||'Evidence check failed',status:'open',at:new Date().toISOString()};S.esc.unshift(e)}$('out').innerHTML=`<div class="res b"><h3>No approved evidence. No guess made.</h3><p style="margin:0">${esc(fail)}</p><div class="meta"><span>Logged as ${esc(e.id)} for expert review</span></div><div class="safe">Follow site safety rules. Escalate to an authorized expert before touching the machine.</div></div>`}
+$('ask').disabled=false;save()};
+$('mic').onclick=()=>{const R=window.SpeechRecognition||window.webkitSpeechRecognition;if(!R){toast('Voice input is not supported in this browser. Type instead.');return}const r=new R();r.lang='hi-IN';r.onresult=e=>{$('q').value=e.results[0][0].transcript;$('q').oninput()};r.onerror=()=>toast('Could not hear that. Try again or type.');r.start();toast('Listening…')};
+const tg=s=>`<span class="tag t-${s}">${s}</span>`;
+function render(){$('plist').innerHTML=S.cards.map(c=>`<div class="item"><div><h3>${esc(c.title)}</h3><p>${esc(c.machine)} · ${esc(SY[c.symptom])} · ${esc(c.version)} · ${esc(c.reviewer)}</p><p>${esc(c.source)}${c.expires?' · review by '+esc(c.expires):''}</p></div><div class="r">${tg(c.status)}<button class="sec sm" data-a="${c.id}">${c.status==='approved'?'Set pending':'Approve…'}</button></div></div>`).join('');
+const o=S.esc.filter(e=>e.status==='open').length;$('ec').textContent=o?'('+o+')':'';
+$('te').innerHTML=S.esc.length?S.esc.map(e=>`<div class="item"><div><h3>${esc(e.id)} · ${esc(e.machine)} · ${esc(SY[e.symptom])}</h3><p>${esc(e.reason)}</p><p>${new Date(e.at).toLocaleString()}</p></div><div class="r">${tg(e.status)}${e.status==='open'?`<button class="sec sm" data-r="${e.id}">Mark reviewed</button>`:''}</div></div>`).join('')+'<p class="note">“Mark reviewed” is a demo status only. It does not mean any real machine issue was resolved.</p>':'<div class="empty">No escalations yet. Run a check on an unfamiliar machine or a symptom with no evidence.</div>';
+$('mets').innerHTML=[['Checks run',S.checks],['Gate passes',S.passes],['Escalations',S.esc.length],['Open queue',o]].map(x=>`<div class="met"><b>${x[1]}</b><span>${x[0]}</span></div>`).join('')}
+$('plist').onclick=e=>{const id=e.target.dataset.a;if(!id)return;const c=S.cards.find(x=>x.id===id);if(c.status==='approved'){c.status='pending'}else{if(!confirm('Only approve if an authorized, qualified reviewer has actually reviewed this source. Approve in this demo?'))return;c.status='approved'}save()};
+$('te').onclick=e=>{const id=e.target.dataset.r;if(!id)return;if(confirm('Mark this demo case as reviewed? No real machine is verified or repaired.')){S.esc.find(x=>x.id===id).status='reviewed';save()}};
+$('nf').onsubmit=e=>{e.preventDefault();S.cards.unshift({id:'KP-'+String(Date.now()).slice(-5),title:$('nt').value.trim(),machine:$('nm').value,symptom:$('ns').value,source:$('nsrc').value.trim(),version:'draft-0.1',reviewer:'Pending authorized reviewer',status:'pending',expires:''});e.target.reset();save();toast('Saved as pending. It will not be used until approved.')};
+$('tabs').onclick=e=>{const t=e.target.closest('button');if(!t)return;document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on',b===t));$('tp').classList.toggle('hid',t.dataset.t!=='p');$('te').classList.toggle('hid',t.dataset.t!=='e');$('tm').classList.toggle('hid',t.dataset.t!=='m')};
+$('exp').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(S,null,2)],{type:'application/json'}));a.download='shiftproof-demo-data.json';a.click()};
+$('rst').onclick=()=>{if(confirm('Reset all demo data?')){S=seed();$('out').innerHTML='';$('gate').classList.add('hid');save()}};
+chips();render();
+</script></body></html>
